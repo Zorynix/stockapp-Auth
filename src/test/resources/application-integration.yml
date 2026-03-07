@@ -1,0 +1,24 @@
+spring:
+  # spring.datasource.* is auto-configured by @ServiceConnection (Testcontainers)
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+  flyway:
+    enabled: false
+  mail:
+    host: localhost
+    port: 1025
+
+telegram:
+  bot:
+    token: test-bot-token
+  init-data:
+    max-age-seconds: 86400
+
+app:
+  jwt:
+    secret: test-jwt-secret-key-for-integration-tests-must-be-32-chars-ok
+    expiration-ms: 3600000
+  frontend-url: http://localhost:3000
