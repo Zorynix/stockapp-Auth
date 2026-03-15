@@ -9,9 +9,13 @@
 
 | Сервис | Порт | Зона ответственности |
 |--------|------|----------------------|
-| MarketDataService | 8080 | Поиск инструментов, свечи |
+| **API Gateway** | 8080 | Единая точка входа, JWT-валидация, CORS |
 | **AuthService** (этот) | 8081 | Аутентификация, профили, JWT |
 | AlertService | 8082 | Ценовые алерты, мониторинг, уведомления, отчёты |
+| MarketDataService | 8083 | Поиск инструментов, свечи |
+| PortfolioService | 8084 | Портфель, счета |
+
+Все запросы приходят через API Gateway (`localhost:8080`), который валидирует JWT для защищённых маршрутов (`/api/profile/**`) и передаёт `X-User-Id` в заголовке.
 
 Все сервисы (кроме PortfolioService) используют одну PostgreSQL БД (`market_service`).
 AuthService **владеет** таблицами `app_users` и `email_verification_codes`.
